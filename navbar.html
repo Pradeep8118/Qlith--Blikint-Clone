@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Blinkit Navbar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        
+        <!-- Logo & Location -->
+        <div class="flex items-center space-x-4">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Blinkit_Logo.svg" alt="blinkit" class="h-6 w-auto">
+          <div class="hidden sm:block text-sm cursor-pointer" id="open-location-modal">
+            <div class="font-semibold text-green-700 hover:underline">Delivery in 11 minutes</div>
+            <div class="text-xs text-gray-600">Bhubaneswar, Odisha, India</div>
+          </div>
+        </div>
+
+        <!-- Search Bar (Desktop only) -->
+        <div class="flex-1 mx-4 hidden md:block">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder='Search "bread"'
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+            <svg class="absolute right-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 10-10.607-10.607 7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="Blinkit/Login.html" class="text-sm font-medium text-gray-700 hover:text-green-600">Login</a>
+          <button class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-md bg-gray-100 hover:bg-gray-200">
+            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 3h2l.4 2M7 13h14l-1.35 6.7a1 1 0 01-.98.8H6.33a1 1 0 01-.98-.8L4 6H2" />
+            </svg>
+            <span class="text-sm font-medium text-gray-800">My Cart</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="md:hidden flex items-center">
+          <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden flex-col space-y-4 pb-4">
+        <div class="text-sm">
+          <div class="font-semibold">Delivery in 11 minutes</div>
+          <div class="text-xs text-gray-600">Bhubaneswar, Odisha, India</div>
+        </div>
+        <input
+          type="text"
+          placeholder='Search "bread"'
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <a href="login.html" class="text-sm font-medium text-gray-700 hover:text-green-600">Login</a>
+        <button class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-md bg-gray-100 hover:bg-gray-200">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 3h2l.4 2M7 13h14l-1.35 6.7a1 1 0 01-.98.8H6.33a1 1 0 01-.98-.8L4 6H2" />
+          </svg>
+          <span class="text-sm font-medium text-gray-800">My Cart</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Location Modal -->
+  <div id="location-modal" class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded-md shadow-xl w-full max-w-md relative">
+      <button id="close-location-modal" class="absolute top-3 right-3 text-gray-600 hover:text-black text-xl">&times;</button>
+      <h2 class="text-lg font-semibold mb-4">Change Location</h2>
+      <div class="flex items-center gap-4">
+        <button class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800">Detect my location</button>
+        <span class="text-gray-400">OR</span>
+        <input type="text" placeholder="search delivery location"
+               class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+      </div>
+    </div>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="navbar.js"></script>
+</body>
+</html>

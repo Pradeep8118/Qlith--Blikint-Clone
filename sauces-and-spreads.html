@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sauces & Spreads</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+
+
+<!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        
+        <!-- Logo & Location -->
+        <div class="flex items-center space-x-10">
+          <img src="images/blinkit-logo_casestudy - Copy.webp" alt="blinkit" class="h-12 w-auto">
+          <div class="hidden sm:block text-sm cursor-pointer" id="open-location-modal">
+            <div class="font-semibold text-green-700 hover:underline">Delivery in 11 minutes</div>
+            <div class="text-xs text-gray-600">Bhubaneswar, Odisha, India</div>
+          </div>
+        </div>
+
+        <!-- Search Bar (Desktop only) -->
+        <div class="flex-1 mx-4 hidden md:block">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder='Search "bread"'
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+            <svg class="absolute right-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 10-10.607-10.607 7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="Login.html" class="text-sm font-medium text-gray-700 hover:text-green-600">Login</a>
+          <button class="open-cart-btn flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-md bg-gray-100 hover:bg-gray-200">
+            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 3h2l.4 2M7 13h14l-1.35 6.7a1 1 0 01-.98.8H6.33a1 1 0 01-.98-.8L4 6H2" />
+            </svg>
+            <span class="text-sm font-medium text-gray-800">My Cart</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="md:hidden flex items-center">
+          <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden flex-col space-y-4 pb-4">
+        <div class="text-sm">
+          <div class="font-semibold">Delivery in 11 minutes</div>
+          <div class="text-xs text-gray-600">Bhubaneswar, Odisha, India</div>
+        </div>
+        <input
+          type="text"
+          placeholder='Search "bread"'
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <a href="login.html" class="text-sm font-medium text-gray-700 hover:text-green-600">Login</a>
+        <button class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-md bg-gray-100 hover:bg-gray-200">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 3h2l.4 2M7 13h14l-1.35 6.7a1 1 0 01-.98.8H6.33a1 1 0 01-.98-.8L4 6H2" />
+          </svg>
+          <span class="text-sm font-medium text-gray-800">My Cart</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Location Modal -->
+  <div id="location-modal" class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded-md shadow-xl w-full max-w-md relative">
+      <button id="close-location-modal" class="absolute top-3 right-3 text-gray-600 hover:text-black text-xl">&times;</button>
+      <h2 class="text-lg font-semibold mb-4">Change Location</h2>
+      <div class="flex items-center gap-4">
+        <button class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800">Detect my location</button>
+        <span class="text-gray-400">OR</span>
+        <input type="text" placeholder="search delivery location"
+               class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <!-- Header -->
+  <header class="text-center py-6 bg-white shadow mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">Buy Sauces & Spreads</h1>
+  </header>
+
+  <!-- Product Grid -->
+  <section class="max-w-7xl mx-auto px-4 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+
+    <!-- Product Cards -->
+    <div class="product-card bg-white shadow rounded-xl p-4 flex flex-col items-center text-center">
+      <img src="images/peanut buttur.avif" alt="Peanut Butter" class="h-28 mb-3 object-contain" />
+      <p class="text-gray-500 text-sm mb-1">⏰ 15 MINS</p>
+      <h3 class="font-semibold text-gray-800 text-base">Sundrop Peanut Butter Creamy</h3>
+      <p class="text-gray-400 text-sm mb-2">462 g</p>
+      <div class="flex justify-between items-center w-full mt-auto">
+        <span class="text-gray-800 font-bold">₹265</span>
+        <button onclick="addToCart(1301, 'Sundrop Peanut Butter Creamy', 265)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm">ADD</button>
+      </div>
+    </div>
+
+    <div class="product-card bg-white shadow rounded-xl p-4 flex flex-col items-center text-center">
+      <img src="images/tomato-ketchup.avif" alt="Tomato Ketchup" class="h-28 mb-3 object-contain" />
+      <p class="text-gray-500 text-sm mb-1">⏰ 10 MINS</p>
+      <h3 class="font-semibold text-gray-800 text-base">Tomato Ketchup</h3>
+      <p class="text-gray-400 text-sm mb-2">1 kg</p>
+      <div class="flex justify-between items-center w-full mt-auto">
+        <span class="text-gray-800 font-bold">₹120</span>
+        <button onclick="addToCart(1302, 'Tomato Ketchup', 120)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm">ADD</button>
+      </div>
+    </div>
+
+    <div class="product-card bg-white shadow rounded-xl p-4 flex flex-col items-center text-center">
+      <img src="images/Ghee.avif" alt="Ghee" class="h-28 mb-3 object-contain" />
+      <p class="text-gray-500 text-sm mb-1">⏰ 12 MINS</p>
+      <h3 class="font-semibold text-gray-800 text-base">Ghee</h3>
+      <p class="text-gray-400 text-sm mb-2">200 ml</p>
+      <div class="flex justify-between items-center w-full mt-auto">
+        <span class="text-gray-800 font-bold">₹55</span>
+        <button onclick="addToCart(1303, 'Ghee', 55)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm">ADD</button>
+      </div>
+    </div>
+
+    <div class="product-card bg-white shadow rounded-xl p-4 flex flex-col items-center text-center">
+      <img src="images/hellmann's mayo.avif" alt="Hellmann's Mayo" class="h-28 mb-3 object-contain" />
+      <p class="text-gray-500 text-sm mb-1">⏰ 13 MINS</p>
+      <h3 class="font-semibold text-gray-800 text-base">Hellmann's Mayo</h3>
+      <p class="text-gray-400 text-sm mb-2">250 g</p>
+      <div class="flex justify-between items-center w-full mt-auto">
+        <span class="text-gray-800 font-bold">₹85</span>
+        <button onclick="addToCart(1304, 'Hellmann\'s Mayo', 85)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm">ADD</button>
+      </div>
+    </div>
+
+    <div class="product-card bg-white shadow rounded-xl p-4 flex flex-col items-center text-center">
+      <img src="images/schezwan chutney.avif" alt="Schezwan chutney" class="h-28 mb-3 object-contain" />
+      <p class="text-gray-500 text-sm mb-1">⏰ 14 MINS</p>
+      <h3 class="font-semibold text-gray-800 text-base">Ching's Schezwan chutney</h3>
+      <p class="text-gray-400 text-sm mb-2">250 g</p>
+      <div class="flex justify-between items-center w-full mt-auto">
+        <span class="text-gray-800 font-bold">₹65</span>
+        <button onclick="addToCart(1305, 'Ching\'s Schezwan chutney', 65)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm">ADD</button>
+      </div>
+    </div>
+
+    <div class="product-card bg-white shadow rounded-xl p-4 flex flex-col items-center text-center">
+      <img src="images/veg-mayo.avif" alt="Veg Mayo" class="h-28 mb-3 object-contain" />
+      <p class="text-gray-500 text-sm mb-1">⏰ 9 MINS</p>
+      <h3 class="font-semibold text-gray-800 text-base">Veg Mayo</h3>
+      <p class="text-gray-400 text-sm mb-2">250 g</p>
+      <div class="flex justify-between items-center w-full mt-auto">
+        <span class="text-gray-800 font-bold">₹70</span>
+        <button onclick="addToCart(1306, 'Veg Mayo', 70)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm">ADD</button>
+      </div>
+    </div>
+
+    <div class="product-card bg-white shadow rounded-xl p-4 flex flex-col items-center text-center">
+      <img src="images/chocolate spread.avif" alt="Chocolate Spread" class="h-28 mb-3 object-contain" />
+      <p class="text-gray-500 text-sm mb-1">⏰ 15 MINS</p>
+      <h3 class="font-semibold text-gray-800 text-base">Chocolate Spread</h3>
+      <p class="text-gray-400 text-sm mb-2">400 g</p>
+      <div class="flex justify-between items-center w-full mt-auto">
+        <span class="text-gray-800 font-bold">₹339</span>
+        <button onclick="addToCart(1307, 'Chocolate Spread', 339)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm">ADD</button>
+      </div>
+    </div>
+
+    <div class="product-card bg-white shadow rounded-xl p-4 flex flex-col items-center text-center">
+      <img src="images/Wpizza Sauce.avif" alt="Pizza Sauce" class="h-28 mb-3 object-contain" />
+      <p class="text-gray-500 text-sm mb-1">⏰ 10 MINS</p>
+      <h3 class="font-semibold text-gray-800 text-base">Del Monte Pizza Sauce</h3>
+      <p class="text-gray-400 text-sm mb-2">400 g</p>
+      <div class="flex justify-between items-center w-full mt-auto">
+        <span class="text-gray-800 font-bold">₹99</span>
+        <button onclick="addToCart(1308, 'Del Monte Pizza Sauce', 99)" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm">ADD</button>
+      </div>
+    </div>
+
+  </section>
+
+  
+
+  <!-- Link to main JS -->
+  <script src="product.js"></script>
+
+<!-- ✅ Toast Message --> 
+<div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-sm font-medium px-6 py-3 rounded-md shadow-lg z-50 hidden">
+  Item added to the cart successfully
+</div>
+
+<!-- Floating Cart Icon -->
+<button id="floatingCartBtn" class="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-lg z-50 flex items-center gap-3">
+  🛒 <span id="cartCount" class="font-bold">0</span>
+</button>
+
+<!-- Cart Modal -->
+<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex justify-end">
+  <div class="bg-white w-full sm:w-96 h-full max-h-screen overflow-y-auto p-6 relative shadow-lg">
+
+    <!-- Close Button -->
+    <button onclick="toggleCart()" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
+
+    <!-- Cart Header -->
+    <h2 class="text-xl font-bold mb-6">My Cart</h2>
+
+    <!-- Delivery Info -->
+    <div class="bg-gray-100 rounded-lg p-4 mb-4 flex items-center gap-3">
+      <div class="text-green-600 text-xl">⏱️</div>
+      <div>
+        <p class="font-semibold text-sm">Delivery in 8 minutes</p>
+        <p class="text-xs text-gray-500">Shipment of <span id="cartItemCount">1 item</span></p>
+      </div>
+    </div>
+
+    <!-- Cart Items -->
+    <div id="cartItemsContainer" class="space-y-4"></div>
+
+    <!-- Empty Cart Message -->
+    <div id="emptyCartMessage" class="text-center text-gray-500 my-8">Your cart is empty.</div>
+
+    <!-- Bill Details -->
+    <div id="billSection" class="bg-gray-100 rounded-lg p-4 mt-6 hidden">
+      <h3 class="font-semibold mb-3">Bill details</h3>
+      <div class="flex justify-between text-sm mb-1">
+        <span>🧾 Items total</span>
+        <span>₹<span id="itemTotal">0</span></span>
+      </div>
+      <div class="flex justify-between text-sm mb-1">
+        <span>🚴 Delivery charge</span>
+        <span>₹<span id="deliveryCharge">25</span></span>
+      </div>
+      <div class="flex justify-between text-sm mb-1">
+        <span>👜 Handling charge</span>
+        <span>₹<span id="handlingCharge">2</span></span>
+      </div>
+      <div class="flex justify-between font-semibold mt-2">
+        <span>Grand total</span>
+        <span>₹<span id="grandTotal">0</span></span>
+      </div>
+    </div>
+
+    <!-- Checkout Button -->
+    <a href="address.html">
+      <button id="checkoutBtn" class="mt-6 w-full bg-green-600 text-white py-3 rounded-md text-lg font-medium hidden">
+        Checkout
+      </button>
+    </a>
+
+    <!-- Cancellation Policy -->
+    <div class="bg-gray-100 rounded-lg p-4 text-sm text-gray-700 mt-6">
+      <h4 class="font-bold mb-1">Cancellation Policy</h4>
+      <p>Orders cannot be cancelled once packed for delivery. In case of unexpected delays, a refund will be provided, if applicable.</p>
+    </div>
+  </div>
+</div>
+
+<script src="product.js"></script>
+</body>
+</html>

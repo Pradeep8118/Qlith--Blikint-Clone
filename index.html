@@ -1,11 +1,720 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Promo Cards</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Hello Blikint</h1>
+
+<body class="bg-white text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        
+        <!-- Logo & Location -->
+        <div class="flex items-center space-x-10">
+          <img src="images/blinkit-logo_casestudy - Copy.webp" alt="blinkit" class="h-12 w-auto">
+          <div class="hidden sm:block text-sm cursor-pointer" id="open-location-modal">
+            <div class="font-semibold text-green-700 hover:underline">Delivery in 11 minutes</div>
+            <div class="text-xs text-gray-600">Bhubaneswar, Odisha, India</div>
+          </div>
+        </div>
+
+        <!-- Search Bar (Desktop only) -->
+        <div class="flex-1 mx-4 hidden md:block">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder='Search "bread"'
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+            <svg class="absolute right-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 10-10.607-10.607 7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="Login.html" class="text-sm font-medium text-gray-700 hover:text-green-600">Login</a>
+          <button class="open-cart-btn flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-md bg-gray-100 hover:bg-gray-200">
+            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 3h2l.4 2M7 13h14l-1.35 6.7a1 1 0 01-.98.8H6.33a1 1 0 01-.98-.8L4 6H2" />
+            </svg>
+            <span class="text-sm font-medium text-gray-800">My Cart</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="md:hidden flex items-center">
+          <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden flex-col space-y-4 pb-4">
+        <div class="text-sm">
+          <div class="font-semibold">Delivery in 11 minutes</div>
+          <div class="text-xs text-gray-600">Bhubaneswar, Odisha, India</div>
+        </div>
+        <input
+          type="text"
+          placeholder='Search "bread"'
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <a href="login.html" class="text-sm font-medium text-gray-700 hover:text-green-600">Login</a>
+        <button class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-md bg-gray-100 hover:bg-gray-200">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 3h2l.4 2M7 13h14l-1.35 6.7a1 1 0 01-.98.8H6.33a1 1 0 01-.98-.8L4 6H2" />
+          </svg>
+          <span class="text-sm font-medium text-gray-800">My Cart</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Location Modal -->
+  <div id="location-modal" class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded-md shadow-xl w-full max-w-md relative">
+      <button id="close-location-modal" class="absolute top-3 right-3 text-gray-600 hover:text-black text-xl">&times;</button>
+      <h2 class="text-lg font-semibold mb-4">Change Location</h2>
+      <div class="flex items-center gap-4">
+        <button class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800">Detect my location</button>
+        <span class="text-gray-400">OR</span>
+        <input type="text" placeholder="search delivery location"
+               class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+      </div>
+    </div>
+  </div>
+
+ 
+
+  <!-- 🔼 Your Navbar Goes Here -->
+
+  <!-- 🔰 Paan Corner Banner -->
+   <!-- 🔰 Clickable Paan Corner Banner -->
+  <section class="px-4 sm:px-6 lg:px-8 mt-6 max-w-screen-xl mx-auto">
+    <a href="cigarette-page.html" class="block rounded-2xl overflow-hidden shadow-md hover:opacity-90 transition">
+      <img src="images/Group-33704.webp" alt="Paan corner" class="w-full object-cover">
+    </a>
+  </section>
+
+  <!-- 🔰 3 Clickable Image Cards -->
+  <section class="px-4 sm:px-6 lg:px-8 mt-6 mb-10 max-w-screen-xl mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+      <!-- 🩺 Pharmacy Image -->
+      <a href="pharma & wellness.html" class="block rounded-2xl overflow-hidden shadow-md hover:opacity-90 transition">
+        <img src="images/pharmacy-WEB.avif" alt="Pharmacy" class="w-full h-auto object-cover">
+      </a>
+
+      <!-- 🐶 Pet Care Image -->
+      <a href="petCare-page.html" class="block rounded-2xl overflow-hidden shadow-md hover:opacity-90 transition">
+        <img src="images/Pet-Care_WEB.avif" alt="Pet Care" class="w-full h-auto object-cover">
+      </a>
+
+      <!-- 👶 Baby Care Image -->
+      <a href="Baby_Care.html" class="block rounded-2xl overflow-hidden shadow-md hover:opacity-90 transition">
+        <img src="images/babycare-WEB.avif" alt="Baby Care" class="w-full h-auto object-cover">
+      </a>
+
+    </div>
+  </section>
+
+
+
+
+
+<section class="category-wrapper px-4 sm:px-6 lg:px-8 mt-10 max-w-screen-xl mx-auto">
+  <div class="flex gap-4 overflow-x-auto pb-4">
+    <a href="Masala-oil-page.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-11.png" alt="Masala, Oil & More" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Masala, Oil & More</p>
+    </a>
+
+    <a href="sauces-and-spreads.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-12.png" alt="Sauces & Spreads" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Sauces & Spreads</p>
+    </a>
+
+    <a href="meat.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-13.png" alt="Chicken, Meat & Fish" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Chicken, Meat & Fish</p>
+    </a>
+
+    <a href="organic.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-14.png" alt="Organic & Healthy Living" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Organic & Healthy Living</p>
+    </a>
+
+    <a href="Baby_Care.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-15.png" alt="Baby Care" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Baby Care</p>
+    </a>
+
+    <a href="pharma & wellness.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-16.png" alt="Pharma & Wellness" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Pharma & Wellness</p>
+    </a>
+
+    <a href="Cleaning.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-17.png" alt="Cleaning Essentials" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Cleaning Essentials</p>
+    </a>
+
+    <a href="home-office-page.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-18.png" alt="Home & Office" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Home & Office</p>
+    </a>
+
+    <a href="personalCare-page.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-19.png" alt="Personal Care" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Personal Care</p>
+    </a>
+
+    <a href="petCare-page.html" class="category-item min-w-[140px] flex-shrink-0 text-center hover:shadow-md transition rounded-lg p-2">
+      <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,w=270/layout-engine/2022-11/Slice-20.png" alt="Pet Care" class="mx-auto">
+      <p class="mt-2 text-sm font-medium">Pet Care</p>
+    </a>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<body class="bg-white text-gray-900 relative">
+
+  <!-- Floating Cart Icon -->
+  <button id="floatingCartBtn" class="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-lg z-50 flex items-center gap-3">
+    🛒 <span id="cartCount" class="font-bold">0</span>
+  </button>
+
+  
+  <!-- Cart Modal -->
+<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex justify-end">
+  <div class="bg-white w-full sm:w-96 h-full max-h-screen overflow-y-auto p-6 relative shadow-lg">
+
+    <!-- Close Button -->
+    <button onclick="toggleCart()" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
+
+    <!-- Cart Header -->
+    <h2 class="text-xl font-bold mb-6">My Cart</h2>
+
+    <!-- Delivery Info -->
+    <div class="bg-gray-100 rounded-lg p-4 mb-4 flex items-center gap-3">
+      <div class="text-green-600 text-xl">⏱️</div>
+      <div>
+        <p class="font-semibold text-sm">Delivery in 8 minutes</p>
+        <p class="text-xs text-gray-500">Shipment of <span id="cartItemCount">1 item</span></p>
+      </div>
+    </div>
+
+    <!-- Cart Items -->
+    <div id="cartItemsContainer" class="space-y-4"></div>
+
+    <!-- Empty Cart Message -->
+    <div id="emptyCartMessage" class="text-center text-gray-500 my-8">Your cart is empty.</div>
+
+    <!-- Bill Details -->
+    <div id="billSection" class="bg-gray-100 rounded-lg p-4 mt-6 hidden">
+      <h3 class="font-semibold mb-3">Bill details</h3>
+      <div class="flex justify-between text-sm mb-1">
+        <span>🧾 Items total</span>
+        <span>₹<span id="itemTotal">0</span></span>
+      </div>
+      <div class="flex justify-between text-sm mb-1">
+        <span>🚴 Delivery charge</span>
+        <span>₹<span id="deliveryCharge">25</span></span>
+      </div>
+      <div class="flex justify-between text-sm mb-1">
+        <span>👜 Handling charge</span>
+        <span>₹<span id="handlingCharge">2</span></span>
+      </div>
+      <div class="flex justify-between font-semibold mt-2">
+        <span>Grand total</span>
+        <span>₹<span id="grandTotal">0</span></span>
+      </div>
+    </div>
+
+    <!-- Checkout Button -->
+    <a href="address.html">
+      <button id="checkoutBtn" class="mt-6 w-full bg-green-600 text-white py-3 rounded-md text-lg font-medium hidden">
+        Checkout
+      </button>
+    </a>
+
+    <!-- Cancellation Policy -->
+    <div class="bg-gray-100 rounded-lg p-4 text-sm text-gray-700 mt-6">
+      <h4 class="font-bold mb-1">Cancellation Policy</h4>
+      <p>Orders cannot be cancelled once packed for delivery. In case of unexpected delays, a refund will be provided, if applicable.</p>
+    </div>
+  </div>
+</div>
+
+  <!-- Product Section 1 -->
+  <!-- Section One: Dairy, Bread & Eggs -->
+<section class="px-4 py-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold">Dairy, Bread & Eggs</h2>
+    <a href="#" class="text-green-600 font-medium text-sm">see all</a>
+  </div>
+  <div class="flex space-x-4 overflow-x-auto pb-2" id="sectionOne">
+
+    <!-- 8 Products -->
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Amul Masti Pouch Curd.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 11 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Amul Masti Pouch Curd</h3>
+        <p class="text-sm text-gray-500">500g</p>
+        <div class="mt-1 text-sm font-semibold">₹26</div>
+      </div>
+      <button onclick="addToCart(101, 'Amul Masti Pouch Curd', 26)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Farm Eggs.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 11 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Farm Eggs (6 pcs)</h3>
+        <p class="text-sm text-gray-500">6 pcs</p>
+        <div class="mt-1 text-sm font-semibold">₹51</div>
+      </div>
+      <button onclick="addToCart(102, 'Farm Eggs', 51)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Harvest Gold-White Bread.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 12 MINS</div>
+        <h3 class="text-sm font-medium mb-1"> Harvest Gold-white Bread</h3>
+        <p class="text-sm text-gray-500">400g</p>
+        <div class="mt-1 text-sm font-semibold">₹35</div>
+      </div>
+      <button onclick="addToCart(103, ' Harvest Gold-white Bread', 35)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Mother Dairy Classic Cup Curd.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 13 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Mother Dairy Classic Cup Curd</h3>
+        <p class="text-sm text-gray-500">200g</p>
+        <div class="mt-1 text-sm font-semibold">₹75</div>
+      </div>
+      <button onclick="addToCart(104, 'Mother Dairy Classic Cup Curd', 75)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Amul Salted Butter.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 10 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Amul Salt Butter</h3>
+        <p class="text-sm text-gray-500">100g</p>
+        <div class="mt-1 text-sm font-semibold">₹48</div>
+      </div>
+      <button onclick="addToCart(105, 'Amul Salt Butter', 48)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Amul Masti Cup Curd.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 10 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Amul Masti Cup Curd </h3>
+        <p class="text-sm text-gray-500">400g</p>
+        <div class="mt-1 text-sm font-semibold">₹32</div>
+      </div>
+      <button onclick="addToCart(106, 'Amul Masti Cup Curd', 32)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Amul Pure Milk Cheese Slices.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 11 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Amul Pure Milk Cheese Slices</h3>
+        <p class="text-sm text-gray-500">200g</p>
+        <div class="mt-1 text-sm font-semibold">₹60</div>
+      </div>
+      <button onclick="addToCart(107, 'Amul Pure Milk Cheese Slicesr', 60)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Amul Moti Toned Milk (90 Days Shelf Life).avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 9 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Amul Moti Toned Milk (90 Days Shelf Life)</h3>
+        <p class="text-sm text-gray-500">250ml</p>
+        <div class="mt-1 text-sm font-semibold">₹90</div>
+      </div>
+      <button onclick="addToCart(108, 'Amul Moti Toned Milk (90 Days Shelf Life)', 90)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+  <!-- Product Section 2 -->
+  <!-- Section Two: Rolling Paper & Tobacco -->
+<section class="px-4 py-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold">Rolling Paper & Tobacco</h2>
+    <a href="#" class="text-green-600 font-medium text-sm">see all</a>
+  </div>
+  <div class="flex space-x-4 overflow-x-auto pb-2" id="sectionTwo">
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Ultimate Rolling Paper with Filter Tips & Crushing Tray (King Size, Unbleached) - Mozo.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 11 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Ultimate Rolling Paper with Filter Tips & Crushing Tray- Mozo</h3>
+        <p class="text-sm text-gray-500">2 x 3 pack</p>
+        <div class="mt-1 text-sm font-semibold">₹80</div>
+      </div>
+      <button onclick="addToCart(201, 'Ultimate Rolling Paper with Filter Tips & Crushing Tray (King Size, Unbleached) - Mozo', 80)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Super Slim Brown Rolling Paper by Stash Pro.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 9 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Super Slim Brown Rolling Paper by Stash Pro</h3>
+        <p class="text-sm text-gray-500">32 leaves</p>
+        <div class="mt-1 text-sm font-semibold">₹30</div>
+      </div>
+      <button onclick="addToCart(202, 'Super Slim Brown Rolling Paper by Stash Pro', 30)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Perfect Rolling Paper (Pink) - Bongchie.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 12 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Perfect Rolling Paper (Pink)</h3>
+        <p class="text-sm text-gray-500">50 tips</p>
+        <div class="mt-1 text-sm font-semibold">₹22</div>
+      </div>
+      <button onclick="addToCart(203, 'Perfect Rolling Paper (Pink)', 22)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Perfect Rolled Cones (Natural) - Bongchie.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 10 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Perfect Rolled Cones (Natural)</h3>
+        <p class="text-sm text-gray-500">Plastic</p>
+        <div class="mt-1 text-sm font-semibold">₹95</div>
+      </div>
+      <button onclick="addToCart(204, 'Perfect Rolled Cones (Natural)', 95)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Brown Rolling Paper (King Size) - Stash Pro.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 8 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Brown Rolling Paper (King Size)</h3>
+        <p class="text-sm text-gray-500">Pack of 5</p>
+        <div class="mt-1 text-sm font-semibold">₹60</div>
+      </div>
+      <button onclick="addToCart(205, 'Brown Rolling Paper (King Size)', 60)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Flavoured Pre Rolled Cones by Sesh.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 10 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Flavoured Pre Rolled Cones by Sesh</h3>
+        <p class="text-sm text-gray-500">Strawberry</p>
+        <div class="mt-1 text-sm font-semibold">₹35</div>
+      </div>
+      <button onclick="addToCart(206, 'Flavoured Pre Rolled Cones by Sesh', 35)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Brown Rolling Paper Cones - Stash Pro.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 13 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Brown Rolling Paper Cones - Stash Pro</h3>
+        <p class="text-sm text-gray-500">Pack of 32</p>
+        <div class="mt-1 text-sm font-semibold">₹40</div>
+      </div>
+      <button onclick="addToCart(207, 'Brown Rolling Paper Cones - Stash Pro', 40)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/GO DESI Meetha Paan Desi Mints.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 14 MINS</div>
+        <h3 class="text-sm font-medium mb-1">GO DESI Meetha Paan Desi Mintsr</h3>
+        <p class="text-sm text-gray-500">Plastic Body</p>
+        <div class="mt-1 text-sm font-semibold">₹110</div>
+      </div>
+      <button onclick="addToCart(208, 'GO DESI Meetha Paan Desi Mints', 110)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- Section Three: Cold Drinks & Juices -->
+<section class="px-4 py-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold">Cold Drinks & Juices</h2>
+    <a href="#" class="text-green-600 font-medium text-sm">see all</a>
+  </div>
+  <div class="flex space-x-4 overflow-x-auto pb-2" id="sectionThree">
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Coca-Cola Soft Drink (750 ml).avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Coca-Cola Soft Drink (750 ml)</h3>
+        <p class="text-sm text-gray-500">750 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹45</div>
+      </div>
+      <button onclick="addToCart(301, 'Coca-Cola Soft Drink (750 ml)', 45)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Bisleri Packaged Water (1 l).avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Bisleri Packaged Water (1 l)</h3>
+        <p class="text-sm text-gray-500">300 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹40</div>
+      </div>
+      <button onclick="addToCart(302, 'Bisleri Packaged Water (1 l)', 40)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Limca Lemon 'N' Lime Soft Drink 750 ml.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Limca Lemon Lime Soft Drink </h3>
+        <p class="text-sm text-gray-500">5 ltr</p>
+        <div class="mt-1 text-sm font-semibold">₹70</div>
+      </div>
+      <button onclick="addToCart(303, 'Limca Lemon Lime Soft Drink 750 ml', 70)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Sprite Lime Flavored Soft Drink 750 ml.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Sprite Lime Flavored Drink</h3>
+        <p class="text-sm text-gray-500">750 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹45</div>
+      </div>
+      <button onclick="addToCart(304, 'Sprite Flavored Drink', 45)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Coca-Cola Zero Sugar Soft Drink.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Coca-Cola Zero Sugar Can</h3>
+        <p class="text-sm text-gray-500">300 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹40</div>
+      </div>
+      <button onclick="addToCart(305, 'Coke Zero Can', 40)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Frooti Mango Drink.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Frooti Mango Drink</h3>
+        <p class="text-sm text-gray-500">125 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹10</div>
+      </div>
+      <button onclick="addToCart(306, 'Frooti Mango Drink', 10)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Appy Apple Juice.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Appy Fizz Apple Drink</h3>
+        <p class="text-sm text-gray-500">250 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹25</div>
+      </div>
+      <button onclick="addToCart(307, 'Appy Fizz Drink', 25)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="images/Maaza Mango Drink 600 ml.avif" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Maaza Mango Refresh</h3>
+        <p class="text-sm text-gray-500">600 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹35</div>
+      </div>
+      <button onclick="addToCart(308, 'Maaza Mango Refresh', 35)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+  </div>
+</section>
+
+<br><br>
+
+<!-- Footer Section -->
+
+
+<footer class="bg-white border-t text-gray-900 text-sm">
+  <!-- Top Links & Categories -->
+  <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+    
+    <!-- Useful Links Column 1 -->
+    <div>
+      <h2 class="font-semibold mb-3">Useful Links</h2>
+      <ul class="space-y-1">
+        <li><a href="#" class="hover:underline">Blog</a></li>
+        <li><a href="#" class="hover:underline">Privacy</a></li>
+        <li><a href="#" class="hover:underline">Terms</a></li>
+        <li><a href="#" class="hover:underline">FAQs</a></li>
+        <li><a href="#" class="hover:underline">Security</a></li>
+        <li><a href="#" class="hover:underline">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Useful Links Column 2 -->
+    <div>
+      <h2 class="invisible">Spacer</h2>
+      <ul class="space-y-1 mt-0">
+        <li><a href="#" class="hover:underline">Partner</a></li>
+        <li><a href="#" class="hover:underline">Franchise</a></li>
+        <li><a href="#" class="hover:underline">Seller</a></li>
+        <li><a href="#" class="hover:underline">Warehouse</a></li>
+        <li><a href="#" class="hover:underline">Deliver</a></li>
+        <li><a href="#" class="hover:underline">Resources</a></li>
+      </ul>
+    </div>
+
+    <!-- Useful Links Column 3 -->
+    <div>
+      <h2 class="invisible">Spacer</h2>
+      <ul class="space-y-1 mt-0">
+        <li><a href="#" class="hover:underline">Recipes</a></li>
+        <li><a href="#" class="hover:underline">Bistro</a></li>
+      </ul>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="sm:col-span-2 md:col-span-2 lg:col-span-2">
+      <h2 class="font-semibold mb-3">Categories <a href="#" class="text-green-600 text-xs ml-1 hover:underline">see all</a></h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-6">
+        <a href="#" class="hover:underline">Cold Drinks & Juices</a>
+        <a href="#" class="hover:underline">Bakery & Biscuits</a>
+        <a href="#" class="hover:underline">Dry Fruits, Masala & Oil</a>
+        <a href="#" class="hover:underline">Paan Corner</a>
+        <a href="#" class="hover:underline">Dairy & Breakfast</a>
+        <a href="#" class="hover:underline">Sauces & Spreads</a>
+        <a href="#" class="hover:underline">Organic & Premium</a>
+        <a href="#" class="hover:underline">Cleaning Essentials</a>
+        <a href="#" class="hover:underline">Personal Care</a>
+        <a href="#" class="hover:underline">Chicken, Meat & Fish</a>
+        <a href="#" class="hover:underline">Baby Care</a>
+        <a href="#" class="hover:underline">Home & Office</a>
+        <a href="#" class="hover:underline">Pet Care</a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- App Download & Social Icons -->
+  <div class="border-t py-6">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <!-- App Buttons -->
+      <div class="flex gap-4">
+        <a href="#">
+          <img src="images/play-google-apple-app-iphone-store.png" class="h-11" alt="App Store">
+        </a>
+        <a href="#">
+          <img src="images/playstore_google.png" class="h-10" alt="Google Play">
+        </a>
+      </div>
+
+      <!-- Social Media Icons -->
+<div class="flex space-x-4">
+  <a href="#" class="hover:opacity-80" aria-label="Facebook">
+    <svg class="w-6 h-6 text-gray-600 hover:text-black" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M22 12.07C22 6.48 17.52 2 12 2S2 6.48 2 12.07c0 5.02 3.66 9.17 8.44 9.93v-7.03H8.1v-2.9h2.34V9.91c0-2.3 1.37-3.57 3.47-3.57.7 0 1.44.12 1.44.12v1.58h-.81c-1.28 0-1.68.79-1.68 1.6v1.92h2.85l-.46 2.9h-2.39v7.03C18.34 21.24 22 17.09 22 12.07z"/>
+    </svg>
+  </a>
+  <a href="#" class="hover:opacity-80" aria-label="Twitter">
+    <svg class="w-6 h-6 text-gray-600 hover:text-black" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M22.46 6c-.77.35-1.6.59-2.46.69a4.26 4.26 0 001.88-2.35 8.39 8.39 0 01-2.7 1.03 4.24 4.24 0 00-7.29 3.87 12 12 0 01-8.72-4.42 4.23 4.23 0 001.31 5.65 4.18 4.18 0 01-1.92-.53v.05a4.25 4.25 0 003.4 4.17 4.3 4.3 0 01-1.91.07 4.26 4.26 0 003.97 2.95 8.52 8.52 0 01-5.29 1.82A8.72 8.72 0 012 19.54a12 12 0 006.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.35-.01-.53A8.35 8.35 0 0022.46 6z"/>
+    </svg>
+  </a>
+  <a href="#" class="hover:opacity-80" aria-label="Instagram">
+    <svg class="w-6 h-6 text-gray-600 hover:text-black" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-.75a.75.75 0 110 1.5.75.75 0 010-1.5z"/>
+    </svg>
+  </a>
+  <a href="#" class="hover:opacity-80" aria-label="LinkedIn">
+    <svg class="w-6 h-6 text-gray-600 hover:text-black" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7.25 0h-3.95v14h4v-7c0-1.93 2.5-2.09 2.5 0v7h4v-7.5c0-4.07-4.7-3.92-6.55-1.91V8z"/>
+    </svg>
+  </a>
+  <a href="#" class="hover:opacity-80" aria-label="Threads">
+    <svg class="w-6 h-6 text-gray-600 hover:text-black" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 2a10 10 0 00-3.38 19.43c-.04-.52-.08-1.3.01-1.87.09-.53.6-3.36.6-3.36s-.15-.3-.15-.74c0-.69.4-1.2.89-1.2.42 0 .62.31.62.69 0 .42-.27 1.05-.4 1.63-.12.52.25.94.73.94.88 0 1.56-.93 1.56-2.27 0-1.19-.86-2.03-2.09-2.03-1.42 0-2.25 1.06-2.25 2.16 0 .43.17.9.38 1.16a.15.15 0 01.04.14c-.04.15-.14.47-.16.54-.03.09-.1.11-.23.07-.87-.34-1.41-1.41-1.41-2.27 0-1.85 1.35-3.54 3.89-3.54 2.04 0 3.63 1.45 3.63 3.39 0 2.03-1.28 3.66-3.07 3.66-.6 0-1.16-.31-1.36-.67l-.37 1.42c-.14.53-.52 1.19-.77 1.6A10 10 0 1012 2z"/>
+    </svg>
+  </a>
+</div>
+
+    </div>
+  </div>
+
+  <!-- Footer Bottom Disclaimer -->
+  <div class="border-t text-xs text-gray-500 py-4 px-4 text-center">
+    “Blinkit” is owned & managed by "Blink Commerce Private Limited" and is not related, linked or interconnected in whatsoever manner or nature, to “GROFFR.COM” which is a real estate services business operated by “Redstone Consultancy Services Private Limited”.
+  </div>
+</footer>
+
+
+ <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-sm font-medium px-6 py-3 rounded-md shadow-lg z-50 hidden" id="toast">
+    Item added to the cart successfully
+  </div>
+
+  <!-- Scripts -->
+  <script src="navbar.js"></script>
+  <script src="product.js"></script>
 </body>
 </html>
+
+

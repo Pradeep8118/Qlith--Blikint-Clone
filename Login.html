@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login / Signup</title>
+  <link rel="stylesheet" href="Loginpop.css" />
+</head>
+<body>
+
+<div class="overlay" id="authPopup">
+  <div class="login-box">
+    <button class="back-btn" onclick="closePopup()">&#8592;</button>
+    <img src="blinkit_logo.svg" alt="logo" class="logo">
+    <h2>India's last minute app</h2>
+
+    <div class="tab-buttons">
+      <button id="showLogin" class="active" onclick="switchToLogin()">Log In</button>
+      <button id="showSignup" onclick="switchToSignup()">Sign Up</button>
+    </div>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="error-message"></div>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+      <p>Log in to continue</p>
+      <div class="input-group">
+        <span>+91</span>
+        <input type="tel" placeholder="Enter mobile number" required id="loginMobile">
+      </div>
+      <div class="input-group password-group">
+        <input type="password" placeholder="Enter password" required id="loginPassword">
+        <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
+      </div>
+      <button type="submit" class="continue-btn">Login</button>
+      <p class="forgot" onclick="forgotPassword()">Forgot Password?</p>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="signupForm" style="display:none">
+      <p>Create your account</p>
+      <div class="input-group">
+        <span>+91</span>
+        <input type="tel" placeholder="Enter mobile number" required id="signupMobile">
+      </div>
+      <div class="input-group password-group">
+        <input type="password" placeholder="Create password" required id="signupPassword">
+        <span class="toggle-password" onclick="togglePassword('signupPassword', this)">👁️</span>
+      </div>
+      <button type="submit" class="continue-btn">Sign Up</button>
+    </form>
+
+    <p class="terms">
+      By continuing, you agree to our
+      <a href="#">Terms of service</a> &
+      <a href="#">Privacy policy</a>
+    </p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

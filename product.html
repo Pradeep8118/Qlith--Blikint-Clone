@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Grid with Cart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 relative">
+
+  <!-- Floating Cart Icon -->
+  <button id="floatingCartBtn" class="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-lg z-50 flex items-center gap-2">
+    🛒 <span id="cartCount" class="font-bold">0</span>
+  </button>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-40">
+    <div class="bg-white w-11/12 md:w-2/3 lg:w-1/2 max-h-[85vh] overflow-y-auto rounded-lg p-6 relative">
+      <button onclick="toggleCart()" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
+      <h2 class="text-2xl font-semibold mb-4">Your Cart</h2>
+      <div id="cartItemsContainer" class="space-y-4"></div>
+      <div id="emptyCartMessage" class="text-center text-gray-500 my-8">Your cart is empty.</div>
+      <button id="checkoutBtn" class="mt-6 w-full bg-green-600 text-white py-3 rounded-md text-lg font-medium hidden">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Product Section 1 -->
+  <!-- Section One: Dairy, Bread & Eggs -->
+<section class="px-4 py-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold">Dairy, Bread & Eggs</h2>
+    <a href="#" class="text-green-600 font-medium text-sm">see all</a>
+  </div>
+  <div class="flex space-x-4 overflow-x-auto pb-2" id="sectionOne">
+
+    <!-- 8 Products -->
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Milk" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 11 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Omfed Cow Milk</h3>
+        <p class="text-sm text-gray-500">500ml</p>
+        <div class="mt-1 text-sm font-semibold">₹26</div>
+      </div>
+      <button onclick="addToCart(101, 'Omfed Cow Milk', 26)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Eggs" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 11 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Farm Eggs (6 pcs)</h3>
+        <p class="text-sm text-gray-500">6 pcs</p>
+        <div class="mt-1 text-sm font-semibold">₹51</div>
+      </div>
+      <button onclick="addToCart(102, 'Farm Eggs', 51)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Bread" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 12 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Brown Bread</h3>
+        <p class="text-sm text-gray-500">400g</p>
+        <div class="mt-1 text-sm font-semibold">₹35</div>
+      </div>
+      <button onclick="addToCart(103, 'Brown Bread', 35)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Cheese" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 13 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Amul Cheese Slices</h3>
+        <p class="text-sm text-gray-500">200g</p>
+        <div class="mt-1 text-sm font-semibold">₹75</div>
+      </div>
+      <button onclick="addToCart(104, 'Amul Cheese Slices', 75)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Butter" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 10 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Amul Butter</h3>
+        <p class="text-sm text-gray-500">100g</p>
+        <div class="mt-1 text-sm font-semibold">₹48</div>
+      </div>
+      <button onclick="addToCart(105, 'Amul Butter', 48)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Curd" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 10 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Nestle Curd</h3>
+        <p class="text-sm text-gray-500">400g</p>
+        <div class="mt-1 text-sm font-semibold">₹32</div>
+      </div>
+      <button onclick="addToCart(106, 'Nestle Curd', 32)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Paneer" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 11 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Fresh Paneer</h3>
+        <p class="text-sm text-gray-500">200g</p>
+        <div class="mt-1 text-sm font-semibold">₹60</div>
+      </div>
+      <button onclick="addToCart(107, 'Fresh Paneer', 60)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Ghee" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 9 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Pure Ghee</h3>
+        <p class="text-sm text-gray-500">250ml</p>
+        <div class="mt-1 text-sm font-semibold">₹90</div>
+      </div>
+      <button onclick="addToCart(108, 'Pure Ghee', 90)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Product Section 2 -->
+  <!-- Section Two: Rolling Paper & Tobacco -->
+<section class="px-4 py-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold">Rolling Paper & Tobacco</h2>
+    <a href="#" class="text-green-600 font-medium text-sm">see all</a>
+  </div>
+  <div class="flex space-x-4 overflow-x-auto pb-2" id="sectionTwo">
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Paper+Cones" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 11 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Perfect Rolled Cones</h3>
+        <p class="text-sm text-gray-500">2 x 3 pack</p>
+        <div class="mt-1 text-sm font-semibold">₹80</div>
+      </div>
+      <button onclick="addToCart(201, 'Perfect Rolled Cones', 80)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Classic+Papers" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 9 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Classic Rolling Papers</h3>
+        <p class="text-sm text-gray-500">32 leaves</p>
+        <div class="mt-1 text-sm font-semibold">₹30</div>
+      </div>
+      <button onclick="addToCart(202, 'Classic Rolling Papers', 30)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Filter+Tips" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 12 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Filter Tips Pack</h3>
+        <p class="text-sm text-gray-500">50 tips</p>
+        <div class="mt-1 text-sm font-semibold">₹22</div>
+      </div>
+      <button onclick="addToCart(203, 'Filter Tips Pack', 22)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Rolling+Machine" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 10 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Rolling Machine</h3>
+        <p class="text-sm text-gray-500">Plastic</p>
+        <div class="mt-1 text-sm font-semibold">₹95</div>
+      </div>
+      <button onclick="addToCart(204, 'Rolling Machine', 95)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Leaf+Wraps" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 8 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Leaf Wraps</h3>
+        <p class="text-sm text-gray-500">Pack of 5</p>
+        <div class="mt-1 text-sm font-semibold">₹60</div>
+      </div>
+      <button onclick="addToCart(205, 'Leaf Wraps', 60)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Hemp+Papers" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 10 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Hemp Rolling Papers</h3>
+        <p class="text-sm text-gray-500">Pack of 32</p>
+        <div class="mt-1 text-sm font-semibold">₹35</div>
+      </div>
+      <button onclick="addToCart(206, 'Hemp Rolling Papers', 35)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Flavored+Papers" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 13 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Flavored Papers</h3>
+        <p class="text-sm text-gray-500">Strawberry</p>
+        <div class="mt-1 text-sm font-semibold">₹40</div>
+      </div>
+      <button onclick="addToCart(207, 'Flavored Papers', 40)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Grinder" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 14 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Tobacco Grinder</h3>
+        <p class="text-sm text-gray-500">Plastic Body</p>
+        <div class="mt-1 text-sm font-semibold">₹110</div>
+      </div>
+      <button onclick="addToCart(208, 'Tobacco Grinder', 110)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Section Three: Cold Drinks & Juices -->
+<section class="px-4 py-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold">Cold Drinks & Juices</h2>
+    <a href="#" class="text-green-600 font-medium text-sm">see all</a>
+  </div>
+  <div class="flex space-x-4 overflow-x-auto pb-2" id="sectionThree">
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Thums+Up" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Thums Up Soft Drink (750 ml)</h3>
+        <p class="text-sm text-gray-500">750 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹45</div>
+      </div>
+      <button onclick="addToCart(301, 'Thums Up Soft Drink', 45)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Diet+Coke" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Coca-Cola Diet Coke Soft Drink</h3>
+        <p class="text-sm text-gray-500">300 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹40</div>
+      </div>
+      <button onclick="addToCart(302, 'Coca-Cola Diet Coke', 40)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Bisleri" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Bisleri Packaged Water</h3>
+        <p class="text-sm text-gray-500">5 ltr</p>
+        <div class="mt-1 text-sm font-semibold">₹70</div>
+      </div>
+      <button onclick="addToCart(303, 'Bisleri Water', 70)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Sprite" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Sprite Lime Flavored Drink</h3>
+        <p class="text-sm text-gray-500">750 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹45</div>
+      </div>
+      <button onclick="addToCart(304, 'Sprite Flavored Drink', 45)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Coke+Zero" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Coca-Cola Zero Sugar Can</h3>
+        <p class="text-sm text-gray-500">300 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹40</div>
+      </div>
+      <button onclick="addToCart(305, 'Coke Zero Can', 40)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Frooti" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Frooti Mango Drink</h3>
+        <p class="text-sm text-gray-500">125 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹10</div>
+      </div>
+      <button onclick="addToCart(306, 'Frooti Mango Drink', 10)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Appy+Fizz" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Appy Fizz Apple Drink</h3>
+        <p class="text-sm text-gray-500">250 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹25</div>
+      </div>
+      <button onclick="addToCart(307, 'Appy Fizz Drink', 25)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+    <div class="min-w-[180px] max-w-[180px] h-[320px] flex flex-col justify-between border rounded-lg p-3 shadow-sm bg-white">
+      <div>
+        <img src="https://via.placeholder.com/150?text=Maaza" class="w-full h-24 object-contain mb-2">
+        <div class="text-xs text-gray-500 mb-1">🕒 19 MINS</div>
+        <h3 class="text-sm font-medium mb-1">Maaza Mango Refresh</h3>
+        <p class="text-sm text-gray-500">600 ml</p>
+        <div class="mt-1 text-sm font-semibold">₹35</div>
+      </div>
+      <button onclick="addToCart(308, 'Maaza Mango Refresh', 35)" class="mt-3 w-full border border-green-600 text-green-600 py-1 rounded-md text-sm font-semibold hover:bg-green-50">ADD</button>
+    </div>
+
+  </div>
+</section>
+
+
+  <script src="product.js"></script>
+</body>
+</html>
