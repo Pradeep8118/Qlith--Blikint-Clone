@@ -107,6 +107,41 @@ function updateCartUI() {
   });
 }
 
+// function placeOrder() {
+//   const user = localStorage.getItem("loggedInUser");
+//   if (!user) {
+//     alert("⚠️ Please log in to place an order.");
+//     window.location.href = "login.html";
+//     return;
+//   }
+
+//   const cart = getCart();
+//   if (cart.length === 0) {
+//     alert("🛒 Your cart is empty.");
+//     return;
+//   }
+
+//   const order = {
+//     id: "ORD" + Date.now(),
+//     date: new Date().toLocaleString(),
+//     items: cart,
+//     total: cart.reduce((sum, item) => sum + item.qty * item.price, 0)
+//   };
+
+//   // Get existing orders
+//   const existingOrders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+//   existingOrders.push(order);
+//   localStorage.setItem("orderHistory", JSON.stringify(existingOrders));
+
+//   // Clear cart
+//   localStorage.removeItem("cartItems");
+//   updateCartUI();
+
+//   alert("✅ Order placed successfully!");
+//   window.location.href = "my-order.html"; // Optional redirect
+// }
+
+
 
 // --- CART TOGGLE ---
 function toggleCart() {

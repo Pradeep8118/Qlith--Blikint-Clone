@@ -1,7 +1,7 @@
 function closePopup(redirect = false) {
   document.getElementById("authPopup").style.display = "none";
   if (redirect) {
-    window.location.href = "index.html"; // Change if your homepage has a different filename
+    window.location.href = "index.html"; // Homepage or change as needed
   }
 }
 
@@ -44,24 +44,29 @@ function hideError() {
   err.textContent = "";
 }
 
-// Handle login
+// ✅ Handle Login
 document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
   hideError();
 
-  const mob = document.getElementById("loginMobile").value.trim();
-  const pwd = document.getElementById("loginPassword").value.trim();
+  const mobile = document.getElementById("loginMobile").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
   const users = JSON.parse(localStorage.getItem("users") || "{}");
 
-  if (users[mob] && users[mob] === pwd) {
-    localStorage.setItem("loggedInUser", mob); // Store session
-    closePopup(true); // Redirect to homepage
+  if (users[mobile] && users[mobile] === password) {
+    localStorage.setItem("loggedInUser", mobile);
+    localStorage.setItem("userName", localStorage.getItem(`userName-${mobile}`) || "John Doe");
+    localStorage.setItem("userMobile", mobile);
+
+    // ✅ Redirect to homepage — navbar will update there
+    window.location.href = "index.html";
   } else {
     showError("Invalid mobile number or password.");
   }
 });
 
-// Handle signup
+
+// ✅ Handle Signup
 document.getElementById("signupForm").addEventListener("submit", function (e) {
   e.preventDefault();
   hideError();
@@ -75,12 +80,16 @@ document.getElementById("signupForm").addEventListener("submit", function (e) {
   } else {
     users[mob] = pwd;
     localStorage.setItem("users", JSON.stringify(users));
+
+    // You could collect name during signup later
+    localStorage.setItem(`userName-${mob}`, "John Doe"); // optional default
+
     alert("Signup successful! You can now log in.");
     switchToLogin();
   }
 });
 
-// Forgot Password
+// ✅ Forgot Password Flow
 function forgotPassword() {
   hideError();
   const mob = prompt("Enter your registered mobile number:");

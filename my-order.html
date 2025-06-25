@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Orders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-green-600">🧾 My Orders</h1>
+    <a href="index.html" class="text-sm text-gray-600 hover:text-green-500">← Back to Home</a>
+  </header>
+
+  <!-- Orders Container -->
+  <main class="max-w-4xl mx-auto mt-6 px-4">
+    <div id="ordersContainer" class="space-y-6">
+      <!-- Orders will be inserted here -->
+    </div>
+
+    <!-- Empty Message -->
+    <div id="noOrdersMessage" class="text-center text-gray-500 mt-12 hidden">
+      <p class="text-lg">You have no orders yet 😔</p>
+      <a href="index.html" class="text-green-600 mt-2 inline-block hover:underline">Start Shopping</a>
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script>
+  // ✅ Redirect if user is not logged in
+  const user = localStorage.getItem("loggedInUser");
+  if (!user) {
+    window.location.href = "login.html";
+  }
+
+  function loadOrders() {
+    const container = document.getElementById("ordersContainer");
+    const noOrdersMsg = document.getElementById("noOrdersMessage");
+
+    const historyKey = `orderHistory-${user}`;
+    const history = JSON.parse(localStorage.getItem(historyKey)) || [];
+
+    if (history.length === 0) {
+      noOrdersMsg.classList.remove("hidden");
+      return;
+    }
+
+    history.reverse().forEach(order => {
+      const card = document.createElement("div");
+      card.className = "bg-white rounded-lg shadow p-4";
+
+      card.innerHTML = `
+        <div class="flex justify-between items-center mb-3">
+          <div>
+            <p class="text-sm text-gray-500">Order ID: <span class="font-medium">${order.id}</span></p>
+            <p class="text-sm text-gray-500">Date: <span class="font-medium">${order.date}</span></p>
+          </div>
+          <div class="text-green-600 font-semibold">₹${order.total}</div>
+        </div>
+        <div class="border-t pt-3">
+          ${order.items.map(item => `
+            <div class="flex justify-between text-sm py-1">
+              <span>${item.name} × ${item.qty}</span>
+              <span class="text-gray-600">₹${item.price * item.qty}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  window.onload = loadOrders;
+</script>
+ 
+</body>
+</html>
