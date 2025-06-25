@@ -131,7 +131,7 @@ function updateNavbarAuth() {
         </div>
       </div>
     ` : `
-      <a href="login.html" class="text-sm font-medium text-gray-700 hover:text-green-600 ml-4">Login</a>
+      <a href="Login.html" class="text-sm font-medium text-gray-700 hover:text-green-600 ml-4">Login</a>
     `}
   `;
 
